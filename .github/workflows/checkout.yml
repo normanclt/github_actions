@@ -10,4 +10,4 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: normanclt/code_migration
-          ref: ref/heads/main
+          ref: main

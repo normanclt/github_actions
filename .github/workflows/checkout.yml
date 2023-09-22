@@ -12,5 +12,7 @@ jobs:
           repository: normanclt/code_migration
           ref: main
 
-      - name: rsync version check
-        run: rsync --version
+      - name: run commands
+        run: |
+          rsync --version
+          ls -lrta

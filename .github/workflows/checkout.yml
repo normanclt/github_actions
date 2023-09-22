@@ -1,0 +1,13 @@
+name: checkout
+
+on: push
+
+jobs:
+  checkout-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: normanclt/code_migration
+          ref: ref/heads/main

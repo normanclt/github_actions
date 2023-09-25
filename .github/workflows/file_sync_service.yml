@@ -14,7 +14,10 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
+        with: 
+          repository: bigfix/site_updates_windows_apps_extended
+          ref: 'publish'
+          
       - name: Setup Python
         uses: actions/setup-python@v4
         with:

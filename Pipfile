@@ -7,6 +7,7 @@ name = "pypi"
 gitpython = "*"
 pygithub = "*"
 icecream = "*"
+sysrsync = "*"
 
 [dev-packages]
 ipykernel = "*"

@@ -8,10 +8,14 @@ PAT_SUPER_ALL_REPOS = os.environ['PAT_SUPER_ALL_REPOS']
 AWS1_IP = os.environ["AWS1_IP"]
 AWS1_SSH_KEY = os.environ["AWS1_SSH_KEY"]
 AWS1_USER = os.environ["AWS1_USER"]
+# temporary representation of a config_manager object
+config: object
+config.ip = AWS1_IP
+config.ssh_private_key = AWS1_SSH_KEY
 
 
 # SOURCE FOLDERS:
-source_folders = []
+source_folder = []
 destination_folders = []
 
 # remote repo

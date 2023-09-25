@@ -4,6 +4,7 @@ on: push
 
 env:
   PAT_SUPER_ALL_REPOS: ${{secrets.PAT_SUPER_ALL_REPOS}}
+  PAT_FIXLET_REPO: ${{secrets.PAT_FIXLET_REPO}}
   AWS1_IP: ${{secrets.AWS1_IP}}
   AWS1_SSH_KEY: ${{secrets.AWS1_SSH_KEY}}
   AWS1_USER: ${{secrets.AWS1_USER}}
@@ -16,8 +17,9 @@ jobs:
         uses: actions/checkout@v4
         with: 
           repository: bigfix/site_updates_windows_apps_extended
-          ref: 'publish'
-          
+          ref: publish
+          token: ${{secrets.PAT_FIXLET_REPO}}
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:

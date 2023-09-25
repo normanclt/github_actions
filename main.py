@@ -29,3 +29,15 @@ main_branch = staging_repo.get_branch('main')
 main_branch_current_commit = Commit_Info(main_branch)
 
 print(main_branch_current_commit.sha)
+
+
+# create an observer class/function
+# the observer is tasked to just compare the staging repo's commit vs. source commit sha
+# staging_repo.sha != source.commit.sha then "need sync"
+# staging_repo.sha == source.commit.sha then "no sync necessary"
+# get_sync_requirement -> sync or no sync
+
+# syncer class/function
+
+
+# orchestrator

@@ -5,7 +5,7 @@ on: push
 env:
   PAT_SUPER_ALL_REPOS: ${{secrets.PAT_SUPER_ALL_REPOS}}
   AWS1_IP: ${{secrets.AWS1_IP}}
-  AWS1_SSH_KEY: ${{secrets.PAT_SUPER_ALL_REPOS}}
+  AWS1_SSH_KEY: ${{secrets.AWS1_SSH_KEY}}
   AWS1_USER: ${{secrets.AWS1_USER}}
   
 jobs:

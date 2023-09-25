@@ -1,0 +1,41 @@
+name: file_sync_service
+
+on: push
+
+env:
+  PAT_SUPER_ALL_REPOS: ${{secrets.PAT_SUPER_ALL_REPOS}}
+  AWS1_IP: ${{secrets.AWS1_IP}}
+  AWS1_SSH_KEY: ${{secrets.PAT_SUPER_ALL_REPOS}}
+  AWS1_USER: ${{secrets.AWS1_USER}}
+  
+jobs:
+  python_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install Pipenv
+        run: pip install pipenv
+
+      - name: Install pipenv dependencies
+        run: pipenv install
+
+      #      - uses: GuillaumeFalourd/setup-rsync@v1.1
+      - name: Run Python Script
+        run: pipenv run python main.py
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: output
+          path: output
+

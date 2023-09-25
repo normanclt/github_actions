@@ -8,9 +8,6 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v4
-        #with:
-          #repository: normanclt/code_migration
-          #ref: main
 
       - name: run commands
         run: |

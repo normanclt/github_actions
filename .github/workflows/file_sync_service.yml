@@ -33,9 +33,9 @@ jobs:
       - name: Run Python Script
         run: pipenv run python main.py
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: output
-          path: output
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: output
+      #     path: output
 

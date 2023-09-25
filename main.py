@@ -21,7 +21,7 @@ base_url = "https://github.com/normanclt/github_actions.git"
 # remote repo we will be observing
 # auth
 auth = Auth.Token(PAT_SUPER_ALL_REPOS)
-github = Github(auth=auth, base_url=base_url)
+github = Github(auth=auth)
 
 staging_repo = github.get_repo("normanclt/staging_repo")
 main_branch = staging_repo.get_branch('main')

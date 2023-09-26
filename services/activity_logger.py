@@ -9,7 +9,7 @@ class Activity_Logger(object):
     _instance = None
     _log_directory = Path(r'../data/logs')
 
-    def __new__(cls, data: dict, filename: str, clear: bool = False):
+    def __new__(cls, identifier: str, filename: str, clear: bool = False):
         if cls._instance == None or clear:
             ic("Creating Instance")
             cls._instance = object.__new__(cls)
@@ -20,19 +20,19 @@ class Activity_Logger(object):
         print("Instance Returned")
         return cls._instance
 
-    def __init__(self, data: dict | None, clear: bool = False):
+    def __init__(self, identifier: str | None, clear: bool = False):
         ic()
         self.setup_log_file()
-        if data != None:
-            self.log_activity(data)
+        if identifier != None:
+            self.log_activity(identifier)
 
-    def __call__(self, data) -> None:
-        self.log_activity(data)
+    def __call__(self, identifier) -> None:
+        self.log_activity(identifier)
 
-    def log_activity(self, data):
+    def log_activity(self, identifier):
         with open(self._log_file_path, "r") as f:
             list = f.readlines()
-            list.insert(0, (f"{data},\n"))
+            list.insert(0, (f"{identifier},\n"))
         with open(self._log_file_path, "w") as f:
             f.writelines(list)
 
@@ -44,7 +44,7 @@ class Activity_Logger(object):
                 return None
             return eval(latest_activity)
 
-    # this is temporary
+    # this is temporary - there's no need for this
     def get_activities(self, activity_line_number: int | None) -> dict | list:
         with open(self.filename, "r") as output_stream:
             if activity_line_number == int:

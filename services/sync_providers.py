@@ -39,8 +39,14 @@ class Rsync_Provider():
 
     def synchronize(self):
         # if this finishes then input dictionary key "completed_sync_commit_sha" : commited_sha
+        ## decomp - gathering data of activity and process of saving it in the activity log
+        ## ? Perhaps you don't need to save the source commit sha 
+        ## ? This application should be agnostic of which is the source commit sha until you gather latest commit
+
         sysrsync.run(verbose=True, source=self.source_folder, destination=self.destination_folder,
              destination_ssh=f"{self.ssh_user}@{self.remote_ip}", options=["-arvc"], private_key=self.ssh_private_key, sync_source_contents=True, strict_host_key_checking=False)
+       #sudo code: 
+       # activity_logger.log_activity('current commit sha as copied from the source commit sha') 
 
    
 

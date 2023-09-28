@@ -8,6 +8,7 @@ gitpython = "*"
 pygithub = "*"
 icecream = "*"
 sysrsync = "*"
+paramiko = "*"
 
 [dev-packages]
 ipykernel = "*"

@@ -34,10 +34,8 @@ class Rsync_Provider(object):
         self.destination_folder = config_manager.destination_folder
         self.remote_ip = config_manager.remote_ip
         self.ssh_user = config_manager.ssh_user
-        if config_manager.ssh_private_key == str:
-            self.ssh_private_key = StringIO(config_manager.ssh_private_key)
-        else:
-            self.ssh_private_key = config_manager.ssh_private_key
+        self.ssh_private_key = config_manager.ssh_private_key
+        self.exclusions = config_manager.exclusions
         self.activity_logger = activity_logger
 
     def push(self, identifier: str):
@@ -52,6 +50,7 @@ class Rsync_Provider(object):
                      destination_ssh=f"{self.ssh_user}@{self.remote_ip}",
                      options=["-arvc"],
                      private_key=self.ssh_private_key,
+                     exclusions=self.exclusions,
                      sync_source_contents=False,
                      strict_host_key_checking=False)
         self.activity_logger.log_activity("identifier")

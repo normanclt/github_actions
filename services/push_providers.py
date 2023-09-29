@@ -51,7 +51,7 @@ class Rsync_Provider(object):
                      options=["-arvc"],
                      private_key=self.ssh_private_key,
                      exclusions=self.exclusions,
-                     sync_source_contents=False,
+                     sync_source_contents=True,
                      strict_host_key_checking=False)
         self.activity_logger.log_activity("identifier")
        # activity_logger.log_activity('current commit sha as copied from the source commit sha')

@@ -8,17 +8,27 @@ env:
   AWS1_IP: ${{secrets.AWS1_IP}}
   AWS1_SSH_KEY: ${{secrets.AWS1_SSH_KEY}}
   AWS1_USER: ${{secrets.AWS1_USER}}
-  
+
+
+
 jobs:
   python_script:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout sync_controller
+        uses: actions/checkout@v4
+        with:
+          path: main
+
+      - name: Checkout Fixlet Staging Repo
         uses: actions/checkout@v4
         with: 
           repository: bigfix/site_updates_windows_apps_extended
           ref: publish
           token: ${{secrets.PAT_FIXLET_REPO}}
+          path: fixlets
+        
+        run: ls -lrta
 
       - name: Setup Python
         uses: actions/setup-python@v4

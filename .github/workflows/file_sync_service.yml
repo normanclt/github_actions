@@ -21,6 +21,9 @@ jobs:
       - name: Display Directory after loading sync_controller.py
         run: ls -lrta
 
+      - name: Display PWD after loading sync_controller
+        run: pwd
+
       - name: Checkout fixlets
         uses: actions/checkout@v4
         with: 

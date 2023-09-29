@@ -66,5 +66,7 @@ push_provider = Rsync_Provider(cm, activity_logger)
 
 fixlet_repo_identifier = github_connector.state_identifier
 remote_aws_identifier = activity_logger.latest_activity
+print("=================================================")
 print(f"fixlet_repo_identifier:{fixlet_repo_identifier}")
-print(f"remote_aws_identifier:{fixlet_repo_identifier}")
+print(f"remote_aws_identifier:{remote_aws_identifier}")
+print("=================================================")

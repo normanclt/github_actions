@@ -70,3 +70,6 @@ print("=================================================")
 print(f"fixlet_repo_identifier:{fixlet_repo_identifier}")
 print(f"remote_aws_identifier:{remote_aws_identifier}")
 print("=================================================")
+
+print("Attempting to push fixlets")
+push_provider.push(fixlet_repo_identifier)

@@ -17,10 +17,8 @@ jobs:
     steps:
       - name: Checkout sync_controller
         uses: actions/checkout@v4
-        with:
-          path: sync_controller
-
-      - name: Check directory
+        
+      - name: Display Directory after loading sync_controller.py
         run: ls -lrta
 
       - name: Checkout fixlets
@@ -30,7 +28,8 @@ jobs:
           ref: publish
           token: ${{secrets.PAT_FIXLET_REPO}}
           path: fixlets
-        
+
+      - name: Display Directory after loading fixlets repo
         run: ls -lrta
 
       - name: Setup Python

@@ -17,6 +17,11 @@ jobs:
     steps:
       - name: Checkout sync_controller
         uses: actions/checkout@v4
+        with:
+          path: sync_controller
+
+      - name: Check directory
+        run: ls -lrta
 
       - name: Checkout fixlets
         uses: actions/checkout@v4
@@ -44,7 +49,7 @@ jobs:
 
       #      - uses: GuillaumeFalourd/setup-rsync@v1.1
       - name: Run Python Script
-        run: pipenv run python main/sync_controller.py
+        run: pipenv run python sync_controller.py
 
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v3

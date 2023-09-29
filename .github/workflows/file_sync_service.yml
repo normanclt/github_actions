@@ -1,7 +1,7 @@
 name: file_sync_service
 
 on: push
-#
+
 env:
   PAT_SUPER_ALL_REPOS: ${{secrets.PAT_SUPER_ALL_REPOS}}
   PAT_FIXLET_REPO: ${{secrets.PAT_FIXLET_REPO}}
@@ -20,7 +20,7 @@ jobs:
         with:
           path: main
 
-      - name: Checkout Fixlet Staging Repo
+      - name: Checkout fixlets
         uses: actions/checkout@v4
         with: 
           repository: bigfix/site_updates_windows_apps_extended
@@ -46,7 +46,7 @@ jobs:
 
       #      - uses: GuillaumeFalourd/setup-rsync@v1.1
       - name: Run Python Script
-        run: pipenv run python sync_controller.py
+        run: pipenv run python main/sync_controller.py
 
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v3

@@ -55,6 +55,7 @@ class Rsync_Provider(object):
                               strict_host_key_checking=False)
         print(f"result:{result}")
         print(f"type:{type(result)}")
+        print(dir(result))
         self.activity_logger.log_activity(identifier)
        # activity_logger.log_activity('current commit sha as copied from the source commit sha')
 

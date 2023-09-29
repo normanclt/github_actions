@@ -36,7 +36,7 @@ jobs:
 
       #      - uses: GuillaumeFalourd/setup-rsync@v1.1
       - name: Run Python Script
-        run: pipenv run python main.py
+        run: pipenv run python sync_controller.py
 
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v3

@@ -43,7 +43,7 @@ cm.github_api_token = PAT_FIXLET_REPO
 # The key needs to be written to disk and permissions changed to accommodate requirements of SSH Server
 # use of StringIO didn't work since the SSH key file needs to have permissions changed
 ssh_private_key_filepath = "private_key"
-with open(ssh_private_key_filepath, "r") as stream:
+with open(ssh_private_key_filepath, "w") as stream:
     stream.write(AWS1_SSH_KEY)
 chmod_private_key = subprocess.run(
     ["chmod", "0600", ssh_private_key_filepath],

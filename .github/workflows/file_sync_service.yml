@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout sync_controller
         uses: actions/checkout@v4
-        with:
-          path: main
 
       - name: Checkout fixlets
         uses: actions/checkout@v4

@@ -9,6 +9,7 @@ pygithub = "*"
 icecream = "*"
 sysrsync = "*"
 paramiko = "*"
+sshfs = "*"
 
 [dev-packages]
 ipykernel = "*"

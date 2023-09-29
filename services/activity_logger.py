@@ -3,60 +3,38 @@ from datetime import datetime
 from pathlib import Path
 from typing import *
 from icecream.icecream import ic
+from services.resource_connectors import *
+from services.config_manager import Config_Manager
 
 
 class Activity_Logger(object):
     _instance = None
-    _log_directory = Path(r'../data/logs')
 
-    def __new__(cls, identifier: str, filename: str, clear: bool = False):
+    def __new__(cls, config_manager: Config_Manager, resource_connector: Resource_Connector, clear: bool = False):
         if cls._instance == None or clear:
-            ic("Creating Instance")
             cls._instance = object.__new__(cls)
-        else:
-            ic()
-            print("Existing instance found!")
-        ic()
-        print("Instance Returned")
         return cls._instance
 
-    def __init__(self, identifier: str | None, clear: bool = False):
-        ic()
+    def __init__(self, config_manager: Config_Manager, resource_connector: Resource_Connector, clear: bool = False):
+        self.config_manager = config_manager
+        self.resource_connector = resource_connector
         self.setup_log_file()
-        if identifier != None:
-            self.log_activity(identifier)
-
-    def __call__(self, identifier) -> None:
-        self.log_activity(identifier)
 
     def log_activity(self, identifier):
-        with open(self._log_file_path, "r") as f:
-            list = f.readlines()
-            list.insert(0, (f"{identifier},\n"))
-        with open(self._log_file_path, "w") as f:
-            f.writelines(list)
-
-    def get_latest_activity(self) -> str:
-        with open(self._log_file_path, "r") as input_stream:
-            input_stream.seek(0)
-            latest_activity = input_stream.readline().strip("\n").strip(",")
-            if latest_activity == "":
-                return None
-            return eval(latest_activity)
-
-    # this is temporary - there's no need for this
-    def get_activities(self, activity_line_number: int | None) -> dict | list:
-        with open(self.filename, "r") as output_stream:
-            if activity_line_number == int:
-                return output_stream.readlines()[activity_line_number].strip("\n").strip(",")
-            activities = output_stream.readlines()
-            return activities
+        file_entries = self.resource_connector.read_file(self.log_file)
+        print(file_entries)
+        file_entries.insert(0, f"{identifier}\n")
+        self.resource_connector.write_file(self.log_file, file_entries)
 
     def setup_log_file(self) -> None:
-        self._log_file_path = Path(os.path.join(
-            self._log_directory, f"{str(datetime.now().date())}.log"))
+        self.log_file = f"{self.config_manager.log_directory}{datetime.now().date()}.log"
+        if not self.resource_connector.exists(self.log_file):
+            print("no log file exists, creating")
+            self.resource_connector.create_file(self.log_file)
 
-    def get_log_file_path(self) -> Path:
-        if not hasattr(self, "_log_file_path") or self._log_file_path == "":
-            self.setup_log_file()
-        return self._log_directory
+    @property
+    def latest_activity(self):
+        activities = self.resource_connector.read_file(self.log_file)
+        if len(activities) == 0:
+            return None
+        return activities[0].strip("\n")

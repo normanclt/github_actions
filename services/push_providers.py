@@ -44,15 +44,16 @@ class Rsync_Provider(object):
         print(f"{self.source_folder} is a dir:{os.path.isdir(self.source_folder)}")
         print(
             f"{'../sync/random/files'} is a dir:{os.path.isdir('../sync/random_files')}")
-        sysrsync.run(verbose=True,
-                     source=self.source_folder,
-                     destination=self.destination_folder,
-                     destination_ssh=f"{self.ssh_user}@{self.remote_ip}",
-                     options=["-arvc"],
-                     private_key=self.ssh_private_key,
-                     exclusions=self.exclusions,
-                     sync_source_contents=True,
-                     strict_host_key_checking=False)
+        result = sysrsync.run(verbose=True,
+                              source=self.source_folder,
+                              destination=self.destination_folder,
+                              destination_ssh=f"{self.ssh_user}@{self.remote_ip}",
+                              options=["-arvc"],
+                              private_key=self.ssh_private_key,
+                              exclusions=self.exclusions,
+                              sync_source_contents=True,
+                              strict_host_key_checking=False)
+        print(result)
         self.activity_logger.log_activity(identifier)
        # activity_logger.log_activity('current commit sha as copied from the source commit sha')
 

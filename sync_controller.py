@@ -35,19 +35,22 @@ cm.remote_ip = '52.74.243.47'
 #     r"D:\Projects\keys\aws_instance_1\aws1\aws1_id_ed25519").as_posix()
 cm.log_directory = "/home/ec2-user/rsync/logs/"
 cm.source_folder = "fixlets/"
-
-# The key needs to be written to disk and permissions changed to accommodate requirements of SSH Server
-# use of StringIO didn't work since the SSH key needs to have permissions changed
-ssh_private_key_filepath = "private_key"
-with open(ssh_private_key_filepath, "r") as stream:
-    stream.write(AWS1_SSH_KEY)
-cm.ssh_private_key = ssh_private_key_filepath
-chmod_private_key = subprocess.run(["chmod", "0600",
-                                    ssh_private_key_filepath], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 # Local
 # cm.source_folder = "sync/random_files/"
 cm.destination_folder = "/home/ec2-user/rsync/RECIPES"
 cm.github_api_token = PAT_FIXLET_REPO
+
+# The key needs to be written to disk and permissions changed to accommodate requirements of SSH Server
+# use of StringIO didn't work since the SSH key file needs to have permissions changed
+ssh_private_key_filepath = "private_key"
+with open(ssh_private_key_filepath, "r") as stream:
+    stream.write(AWS1_SSH_KEY)
+chmod_private_key = subprocess.run(
+    ["chmod", "0600", ssh_private_key_filepath],
+    stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+print(f"STDOUT: {chmod_private_key.stdout}")
+print(f"STDERR: {chmod_private_key.stderr}")
+cm.ssh_private_key = ssh_private_key_filepath
 
 # Local
 # cm.github_api_token_filepath = Path(

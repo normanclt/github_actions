@@ -55,13 +55,6 @@ print(f"STDERR: {chmod_private_key.stderr}")
 cm.ssh_private_key = ssh_private_key_filepath
 
 
-# Local
-# cm.github_api_token_filepath = Path(
-#     r"D:\Projects\keys\github_swottednorman\norman_read_only_bgfix.txt")
-# Local
-# with open(cm.github_api_token_filepath, "r") as stream:
-#     cm.github_api_token = stream.readline()
-
 github_connector = Github_Connector(cm)
 sshfs_connector = SSHFS_Connector(cm)
 activity_logger = Activity_Logger(cm, sshfs_connector)
@@ -75,4 +68,4 @@ sync_controller = Sync_Controller(
     rsync_provider)
 
 
-sync_controller.status_check
+sync_controller.status_check()

@@ -66,11 +66,12 @@ github_connector = Github_Connector(cm)
 sshfs_connector = SSHFS_Connector(cm)
 activity_logger = Activity_Logger(cm, sshfs_connector)
 rsync_provider = Rsync_Provider(cm, activity_logger)
-
+github_connector = Github_Connector(cm)
 sync_controller = Sync_Controller(
     cm,
     sshfs_connector,
     activity_logger,
+    github_connector,
     rsync_provider)
 
 

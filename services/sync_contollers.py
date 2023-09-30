@@ -57,3 +57,4 @@ class Sync_Controller():
                 self.github_connector.state_identifier)
             print(result)
             print(dir(result))
+            print(result.returncode)

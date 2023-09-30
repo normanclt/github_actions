@@ -33,13 +33,7 @@ class Github_Connector():
 
     def __new__(cls, config: Config_Manager, clear: bool = False):
         if cls._instance == None or clear:
-            ic("Creating Instance")
             cls._instance = object.__new__(cls)
-        else:
-            ic()
-            print("Existing instance found!")
-        ic()
-        print("Instance Returned")
         return cls._instance
 
     def __init__(self, config: Config_Manager, clear: bool = False):
@@ -69,6 +63,12 @@ class Github_Connector():
         pass
 
     def write_to_file(self):
+        pass
+
+    def exists(self):
+        pass
+
+    def ls(self, path: Any, detail: bool = True, **kwargs: Any) -> list:
         pass
 
 
@@ -149,6 +149,7 @@ class SSHFS_Connector(SSHFileSystem):
             print(e)
 
     def exists(self, filepath: str) -> bool:
+        print(f"Testing existence of \"{filepath}\"")
         try:
             with self.open(filepath, "r") as stream:
                 return True

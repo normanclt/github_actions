@@ -2,6 +2,7 @@ from services.push_providers import *
 from services.config_manager import Config_Manager
 from services.activity_logger import Activity_Logger
 from services.resource_connectors import Github_Connector, SSHFS_Connector
+from services.sync_contollers import Sync_Controller
 from io import StringIO, BytesIO
 import subprocess
 
@@ -53,6 +54,7 @@ print(f"STDOUT: {chmod_private_key.stdout}")
 print(f"STDERR: {chmod_private_key.stderr}")
 cm.ssh_private_key = ssh_private_key_filepath
 
+
 # Local
 # cm.github_api_token_filepath = Path(
 #     r"D:\Projects\keys\github_swottednorman\norman_read_only_bgfix.txt")
@@ -63,14 +65,13 @@ cm.ssh_private_key = ssh_private_key_filepath
 github_connector = Github_Connector(cm)
 sshfs_connector = SSHFS_Connector(cm)
 activity_logger = Activity_Logger(cm, sshfs_connector)
-push_provider = Rsync_Provider(cm, activity_logger)
+rsync_provider = Rsync_Provider(cm, activity_logger)
 
-fixlet_repo_identifier = github_connector.state_identifier
-remote_aws_identifier = activity_logger.latest_activity
-print("=================================================")
-print(f"fixlet_repo_identifier:{fixlet_repo_identifier}")
-print(f"remote_aws_identifier:{remote_aws_identifier}")
-print("=================================================")
+sync_controller = Sync_Controller(
+    cm,
+    sshfs_connector,
+    activity_logger,
+    rsync_provider)
 
-print("Attempting to push fixlets")
-push_provider.push(fixlet_repo_identifier)
+
+sync_controller.status_check

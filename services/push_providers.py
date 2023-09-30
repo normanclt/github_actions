@@ -58,24 +58,3 @@ class Rsync_Provider(object):
         print(dir(result))
         self.activity_logger.log_activity(identifier)
        # activity_logger.log_activity('current commit sha as copied from the source commit sha')
-
-
-class Repo_Provider():
-    # insert repo configuration
-    _instance = None
-
-    def __new__(cls, data: dict, filename: str, clear: bool = False):
-        if cls._instance == None or clear:
-            print("Creating Instance")
-            cls._instance = object.__new__(cls)
-        else:
-            print("Existing instance found!")
-        print("Instance Returned")
-
-    # compare github01 latest commit on main and log
-    # leverage function to synch_check_requirement
-    #
-
-    def synchronize(self, fn_sync_check_requirement):
-
-        pass

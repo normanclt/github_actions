@@ -69,3 +69,4 @@ sync_controller = Sync_Controller(
 
 
 sync_controller.status_check()
+sync_controller.exec_sync()

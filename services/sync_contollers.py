@@ -55,3 +55,5 @@ class Sync_Controller():
         if self.github_connector.state_identifier != self.sshfs_connector.state_identifier:
             result = self.rsync_provider.push(
                 self.github_connector.state_identifier)
+            print(result)
+            print(dir(result))

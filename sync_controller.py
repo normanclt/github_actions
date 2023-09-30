@@ -34,7 +34,7 @@ cm.remote_ip = '52.74.243.47'
 # Local
 # cm.ssh_private_key = Path(
 #     r"D:\Projects\keys\aws_instance_1\aws1\aws1_id_ed25519").as_posix()
-cm.log_directory = "/home/ec2-user/rsync/logs/"
+cm.log_directory = "/home/ec2-user/rsync/logs"
 cm.source_folder = "fixlets/fixlets/"
 cm.exclusions = [".git", ".vscode"]
 # Local

@@ -1,5 +1,5 @@
 from services.push_providers import *
-from services.config_manager import Config_Manager
+from services.config_manager_temp import Config_Manager
 from services.activity_logger import Activity_Logger
 from services.resource_connectors import Github_Connector, SSHFS_Connector
 from services.sync_contollers import Sync_Controller

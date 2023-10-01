@@ -1,4 +1,4 @@
-from services.config_manager import Config_Manager
+from services.config_manager_temp import Config_Manager
 from github import Github, Auth
 from icecream import ic
 from typing import Any

@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import *
 from icecream.icecream import ic
 from services.resource_connectors import *
-from services.config_manager import Config_Manager
+from services.config_manager_temp import Config_Manager
 
 
 class Activity_Logger(object):

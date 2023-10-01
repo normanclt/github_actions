@@ -3,7 +3,7 @@ from .activity_logger import Activity_Logger
 from io import StringIO
 from pathlib import Path
 import sysrsync
-from services.config_manager import Config_Manager
+from services.config_manager_temp import Config_Manager
 import os
 
 
